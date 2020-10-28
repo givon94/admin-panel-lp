@@ -2,9 +2,8 @@
     <v-container
             class="fill-height"
             fluid
-            v-if="!auth" v-show="!auth"
-            style="display: none;"
     >
+        <p>{{findings}}</p>
         <v-row
                 align="center"
                 justify="center"
@@ -23,14 +22,14 @@
                         <v-toolbar-title>Контакты</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
-                        <v-form v-on:submit.prevent="login">
+                        <v-form v-on:submit.prevent="saveFindings">
                             <v-text-field
                                     id=""
                                     label="Адрес"
                                     name="adress"
                                     prepend-icon="mdi-map-marker"
                                     type="text"
-                                    v-model="adress"
+                                    v-model="findings.adress"
                             ></v-text-field>
                             <v-text-field
                                     id=""
@@ -38,36 +37,57 @@
                                     name="email"
                                     prepend-icon="mdi-email"
                                     type="text"
-                                    v-model="email"
+                                    v-model="findings.email"
                             ></v-text-field>
 
-                            <v-row align="center" style="padding-left: 10px;">
+                            <v-row
+                                    align="center"
+                                    style="padding-left: 10px;"
+                                    v-for="(phone, index) of findings.contacts"
+                                    :key="phone.operator"
+                            >
                                 <v-text-field
                                         id=""
                                         label="Телефон"
                                         name="phone"
                                         prepend-icon="mdi-phone-in-talk"
                                         type="text"
-                                        v-model="phone"
+                                        v-model="phone.num"
                                 ></v-text-field>
                                 <v-col class="d-flex" cols="6" sm="3">
                                     <v-select
                                             :items="items"
+                                            item-text="state"
+                                            item-value="code"
                                             label="Оператор"
+                                            persistent-hint
+                                            v-model="phone.operator"
                                     ></v-select>
                                 </v-col>
-                                <v-icon class="pointer" left>mdi-close</v-icon>
+                                <v-icon
+                                        class="pointer"
+                                        left
+                                        @click="delItemPhone(index)"
+                                >mdi-close</v-icon>
                             </v-row>
                         </v-form>
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn class="ma-2" tile outlined color="success">
+                        <v-btn class="ma-2"
+                               tile
+                               outlined
+                               color="success"
+                               @click="addItemPhone"
+                        >
                             <v-icon left>mdi-phone-plus</v-icon> Добавить телефон
                         </v-btn>
                         <v-btn
                                 color="indigo"
                                 dark
+                                type="submit"
+                                @click="saveFindings"
+                                :loading="loading"
                         >Сохранить</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -81,8 +101,44 @@
 
     export default {
         data: () => ({
-            items: ['A1', 'MTS', 'Life:)', 'Городской'],
-        })
+            items: [
+                { state: 'A1', code: 'a1' },
+                { state: 'MTS', code: 'mts' },
+                { state: 'Life:)', code: 'life' },
+                { state: 'Городской', code: 'home' },
+            ],
+        }),
+        mounted () {
+            this.$store.dispatch('loadFindings')
+        },
+        computed: {
+            loading () {
+                return this.$store.getters.loading
+            },
+            findings () {
+                return this.$store.getters.FINDINGS
+            },
+            auth () {
+                return this.$store.getters.AUTH
+            }
+        },
+        methods: {
+            addItemPhone () {
+                this.op = 'a1';
+                this.number = '';
+                this.findings.contacts.push({
+                    operator: this.op,
+                    num: this.number
+                })
+            },
+            delItemPhone: function(index){
+                this.findings.contacts.splice(index, 1)
+            },
+            saveFindings ()  {
+                const findings = this.findings
+                this.$store.dispatch('saveFindings', findings)
+            }
+        }
     }
 </script>
 

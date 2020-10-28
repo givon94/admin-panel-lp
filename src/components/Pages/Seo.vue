@@ -3,8 +3,18 @@
             class="fill-height"
             fluid
     >
-        <p>{{findings}}</p>
-        <p>{{auth}}</p>
+        <div class="my-2">
+            <v-btn
+                    style="margin-bottom: 30px;"
+                    x-large
+                    color="success"
+                    @click="saveFindings"
+                    :loading="loading"
+                    dark
+            >Сохранить
+            </v-btn>
+        </div>
+
         <v-row
                 align="flex-start"
                 justify="center"
@@ -15,7 +25,7 @@
                     style="margin: 25px;"
                     width="calc(33.33% - 50px)"
                     v-for="link of findings.meta"
-                    :key="link.title"
+                    :key="link.page"
             >
                 <v-toolbar
                         color="indigo"
@@ -27,7 +37,6 @@
                 <v-card-text>
                     <v-form>
                         <v-textarea
-                                id=""
                                 label="Заголовок"
                                 name="pageTitle"
                                 type="text"
@@ -37,7 +46,6 @@
                                 v-model="link.title"
                         ></v-textarea>
                         <v-textarea
-                                id=""
                                 label="Описание"
                                 name="pageDescr"
                                 type="text"
@@ -48,7 +56,6 @@
                         ></v-textarea>
 
                         <v-textarea
-                                id=""
                                 label="Ключевые слова"
                                 name="PageKeywords"
                                 type="text"
@@ -60,13 +67,6 @@
 
                     </v-form>
                 </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                            color="indigo"
-                            dark
-                    >Сохранить</v-btn>
-                </v-card-actions>
             </v-card>
         </v-row>
     </v-container>
@@ -74,16 +74,27 @@
 
 
 <script>
-    import { mapState } from 'vuex'
-
     export default {
         mounted () {
             this.$store.dispatch('loadFindings')
         },
-        computed: mapState([
-            'findings',
-            'auth'
-        ])
+        computed: {
+            loading () {
+                return this.$store.getters.loading
+            },
+            findings () {
+                return this.$store.getters.FINDINGS
+            },
+            auth () {
+                return this.$store.getters.AUTH
+            }
+        },
+        methods: {
+            saveFindings ()  {
+                const findings = this.findings
+                this.$store.dispatch('saveFindings', findings)
+            }
+        }
     }
 </script>
 

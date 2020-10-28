@@ -50,6 +50,7 @@
     }
   ],
   "adress": "г. Минск ул. Пушкина д. калатушкина",
+  "email": "test@test.by",
   "contacts": [
 	{
 		"operator": "a1",

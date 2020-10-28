@@ -22,7 +22,7 @@
                         <v-toolbar-title>Авторизация</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
-                        <v-form v-on:submit.prevent="onLogin">
+                        <v-form v-on:submit.prevent="onLogin" v-model="valid">
                             <v-text-field
                                     id=""
                                     label="Введите пароль"
@@ -38,10 +38,13 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
-                                type="submit"
+                                style="color: #fff;"
                                 color="indigo"
-                                dark
-                        >Вход</v-btn>
+                                type="submit"
+                                @click="onLogin"
+                                :loading="loading"
+                                :disabled="!valid || loading"
+                        >Войти</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -51,27 +54,39 @@
 
 
 <script>
-    import { mapState } from 'vuex'
+    //import { mapState } from 'vuex'
 
     export default {
         data () {
             return {
                 password: '',
                 checkPassword: false,
+                valid: false,
                 passwordRules: [
                     v => !!v || 'Введите пароль',
                     v => (v && v.length >= 6) || 'Пароль должен содержать не менее 6 символов',
                 ]
             }
         },
-        computed: mapState([
-            'auth'
-        ]),
+        computed: {
+            loading () {
+                return this.$store.getters.loading
+            },
+            auth () {
+                return this.$store.getters.AUTH
+            }
+        },
         methods: {
             onLogin () {
                 const password = this.password
                 this.$store.dispatch('userLogin', password)
-            }
+                .then(() => {
+                    if(!this.auth === true) {
+                        this.$router.push('/')
+                    }
+                })
+                .catch(() => {})
+            },
         }
     }
 </script>

@@ -91,24 +91,42 @@
         <v-content>
           <router-view></router-view>
         </v-content>
-<!--        <template v-if="error">-->
-<!--          <v-snackbar-->
-<!--                  color="error"-->
-<!--                  :multi-line="true"-->
-<!--                  :timeout="5000"-->
-<!--                  @input="closeError"-->
-<!--                  :value="true"-->
-<!--          >-->
-<!--            {{ error }}-->
-<!--            <v-btn-->
-<!--                    dark-->
-<!--                    text-->
-<!--                    @click="snackbar = closeError"-->
-<!--            >-->
-<!--              Close-->
-<!--            </v-btn>-->
-<!--          </v-snackbar>-->
-<!--        </template>-->
+        <template v-if="success">
+          <v-snackbar
+                  color="success"
+                  :multi-line="true"
+                  :timeout="3000"
+                  @input="closeSuccess"
+                  :value="true"
+          >
+            {{ success }}
+            <v-btn
+                    dark
+                    text
+                    @click="snackbar = closeError"
+            >
+              Закрыть
+            </v-btn>
+          </v-snackbar>
+        </template>
+        <template v-if="error">
+          <v-snackbar
+                  color="error"
+                  :multi-line="true"
+                  :timeout="3000"
+                  @input="closeError"
+                  :value="true"
+          >
+            {{ error }}
+            <v-btn
+                    dark
+                    text
+                    @click="snackbar = closeError"
+            >
+              Закрыть
+            </v-btn>
+          </v-snackbar>
+        </template>
       </v-container>
     </v-main>
     <v-footer
@@ -121,7 +139,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
 
   export default {
     props: {
@@ -130,14 +147,30 @@
     data: () => ({
       drawer: null,
     }),
-    computed: mapState([
-      'auth'
-    ]),
+    computed: {
+      error () {
+        return this.$store.getters.error
+      },
+      success () {
+        return this.$store.getters.success
+      },
+      auth () {
+        return this.$store.getters.AUTH
+      }
+    },
     methods: {
+      closeError () {
+        this.$store.dispatch('clearError')
+      },
+      closeSuccess () {
+        this.$store.dispatch('clearSuccess')
+      },
       onLogout () {
         this.$store.dispatch('userLogout')
-        //this.$store.commit('SET_AUTH' ,false)
-        //this.$router.push('/')
+            .then(() => {
+              this.$router.push('/')
+            })
+            .catch(() => {})
       }
     }
   }
@@ -148,5 +181,10 @@
   .pointer {
     cursor: pointer;
     user-select: none;
+  }
+
+  .v-list-item * {
+    border: none !important;
+    text-decoration: none !important;
   }
 </style>

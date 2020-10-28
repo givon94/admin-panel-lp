@@ -12,8 +12,4 @@ new Vue({
   vuetify,
   axios,
   render: h => h(App),
-  data: {
-    test: 'test',
-    auth: true
-  }
 }).$mount('#app')

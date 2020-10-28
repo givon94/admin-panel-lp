@@ -2,8 +2,7 @@
     <v-container
             class="fill-height"
             fluid
-            v-if="!auth" v-show="!auth"
-            style="display: none;"
+            v-if="!auth"
     >
         <v-row
                 align="center"
@@ -23,7 +22,7 @@
                         <v-toolbar-title>Авторизация</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
-                        <v-form v-on:submit.prevent="login">
+                        <v-form v-on:submit.prevent="onLogin">
                             <v-text-field
                                     id=""
                                     label="Введите пароль"
@@ -39,6 +38,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
+                                type="submit"
                                 color="indigo"
                                 dark
                         >Вход</v-btn>
@@ -51,7 +51,8 @@
 
 
 <script>
-    const axios = require('axios');
+    import { mapState } from 'vuex'
+
     export default {
         data () {
             return {
@@ -63,26 +64,13 @@
                 ]
             }
         },
+        computed: mapState([
+            'auth'
+        ]),
         methods: {
-            login() {
-                if(this.password.length > 5){
-                    this.checkPassword = false;
-                    alert(this.password)
-
-                    axios
-                        .post('./api/login.php', {'password': this.password})
-                        .then(res => {
-                            if(res.data.auth === true){
-                                this.auth = res.data.auth;
-                                //this.start();
-                            }  else {
-                                this.checkPassword = true
-                            }
-                            console.log(res.data);
-                        })
-                } else {
-                    this.checkPassword = true
-                }
+            onLogin () {
+                const password = this.password
+                this.$store.dispatch('userLogin', password)
             }
         }
     }

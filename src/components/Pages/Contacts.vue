@@ -3,7 +3,7 @@
             class="fill-height"
             fluid
     >
-        <p>{{findings}}</p>
+        <p>{{findings.contacts}}</p>
         <v-row
                 align="center"
                 justify="center"
@@ -11,7 +11,7 @@
             <v-col
                     cols="12"
                     sm="8"
-                    md="4"
+                    md="6"
             >
                 <v-card class="elevation-12">
                     <v-toolbar
@@ -33,11 +33,21 @@
                             ></v-text-field>
                             <v-text-field
                                     id=""
-                                    label="E-mail (прописывать через запятую)"
+                                    label="E-mail (для контактов)"
                                     name="email"
                                     prepend-icon="mdi-email"
                                     type="text"
-                                    v-model="findings.email"
+                                    v-model="findings.email_contacts"
+                            ></v-text-field>
+                            <v-text-field
+                                    id=""
+                                    label="E-mail (для форм)"
+                                    name="email"
+                                    prepend-icon="mdi-email"
+                                    hint="Если несколько, писать через ,"
+                                    persistent-hint
+                                    type="text"
+                                    v-model="findings.email_form"
                             ></v-text-field>
 
                             <v-row
@@ -46,14 +56,40 @@
                                     v-for="(phone, index) of findings.contacts"
                                     :key="phone.operator"
                             >
-                                <v-text-field
-                                        id=""
-                                        label="Телефон"
-                                        name="phone"
-                                        prepend-icon="mdi-phone-in-talk"
-                                        type="text"
-                                        v-model="phone.num"
-                                ></v-text-field>
+                            <v-text-field-simplemask
+                                    v-model="phone.num"
+                                    prepend-icon="mdi-map-marker"
+                                    label="Телефон"
+                                    name="phone"
+                                    v-bind:properties="{
+                                prefix: '',
+                                suffix: '',
+                                readonly: false,
+                                disabled: false,
+                                outlined: false,
+                                clearable: false,
+                                placeholder: '',
+                              }"
+                                    v-bind:options="{
+                                humanMask: '+###(##) ###-##-##',
+                                machineMask: '+###(##) ###-##-##',
+                                empty: null,
+                                applyAfter: false,
+                                alphanumeric: false,
+                                lowerCase: false,
+                              }"
+                                    v-bind:focus="focus"
+                                    v-on:focus="focus = false"
+                            />
+
+<!--                                <v-text-field-->
+<!--                                        id=""-->
+<!--                                        label="Телефон"-->
+<!--                                        name="phone"-->
+<!--                                        prepend-icon="mdi-phone-in-talk"-->
+<!--                                        type="text"-->
+<!--                                        v-model="phone.num"-->
+<!--                                ></v-text-field>-->
                                 <v-col class="d-flex" cols="6" sm="3">
                                     <v-select
                                             :items="items"
@@ -64,6 +100,19 @@
                                             v-model="phone.operator"
                                     ></v-select>
                                 </v-col>
+
+                                <v-col class="d-flex" cols="6" sm="3">
+                                    <v-select
+                                            :items="messengers"
+                                            item-text="state"
+                                            item-value="code"
+                                            label="Мессенджеры"
+                                            persistent-hint
+                                            v-model="phone.messenger"
+                                            multiple
+                                    ></v-select>
+                                </v-col>
+
                                 <v-icon
                                         class="pointer"
                                         left
@@ -101,11 +150,17 @@
 
     export default {
         data: () => ({
+            focus: false,
             items: [
                 { state: 'A1', code: 'a1' },
                 { state: 'MTS', code: 'mts' },
                 { state: 'Life:)', code: 'life' },
                 { state: 'Городской', code: 'home' },
+            ],
+            messengers: [
+                { state: 'Viber', code: 'viber' },
+                { state: 'Telegram', code: 'telegram' },
+                { state: 'WhatsApp', code: 'whatsapp' },
             ],
         }),
         mounted () {
@@ -128,7 +183,7 @@
                 this.number = '';
                 this.findings.contacts.push({
                     operator: this.op,
-                    num: this.number
+                    num: ''
                 })
             },
             delItemPhone: function(index){
@@ -140,6 +195,8 @@
             }
         }
     }
+
+
 </script>
 
 

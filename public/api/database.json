@@ -50,23 +50,28 @@
     }
   ],
   "adress": "г. Минск ул. Пушкина д. калатушкина",
-  "email": "test@test.by",
+  "email_contacts": "test@test.by",
+  "email_form": "testform@test.by",
   "contacts": [
 	{
 		"operator": "a1",
-		"num": "+375(29) 11-11-111"
+		"num": "+375(29) 11-11-111",
+		"messenger": ["viber", "telegram", "whatsapp"]
 	},
 	{
 		"operator": "mts",
-		"num": "+375(29) 22-22-222"
+		"num": "+375(29) 22-22-222",
+		"messenger": []
 	},
 	{
 		"operator": "life",
-		"num": "+375(25) 33-33-333"
+		"num": "+375(25) 33-33-333",
+		"messenger": []
 	},
 		{
 		"operator": "home",
-		"num": "+375(17) 44-44-444"
+		"num": "+375(17) 44-44-444",
+		"messenger": ["viber", "whatsapp"]
 	}
   ],
   "scripts": {

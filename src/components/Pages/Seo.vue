@@ -3,9 +3,8 @@
             class="fill-height"
             fluid
     >
-        <div class="my-2">
+        <div class="my-2" style="margin: 0 auto 30px !important;">
             <v-btn
-                    style="margin-bottom: 30px;"
                     x-large
                     color="success"
                     @click="saveFindings"

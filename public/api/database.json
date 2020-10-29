@@ -50,6 +50,7 @@
     }
   ],
   "adress": "г. Минск ул. Пушкина д. калатушкина",
+  "work": "ПН - ПТ 9:00 - 18:00; СБ - ВС По согласованию",
   "email_contacts": "test@test.by",
   "email_form": "testform@test.by",
   "contacts": [
@@ -75,32 +76,88 @@
 	}
   ],
   "scripts": {
-  	"head": [
-		{
+  	"gtm": {
 			"name": "gtm",
-			"code": "<script>console.log('gtm head')</script>"
+			"title": "GoogleTagManager",
+			"code_head": "<script>console.log('code_head')</script>",
+			"code_body": "<script>console.log('code_body')</script>",
+			"enabled": true
+  	},
+	"lists": [
+		{
+			"name": "gtag",
+			"title": "Google Analytics",
+			"code": "<script>console.log('Google Analytics')</script>",
+			"tag": "head",
+			"position": "beforeend",
+			"enabled": true
 		},
 		{
-			"name": "yandex metrica",
-			"code": "<script>console.log('yandex metrica head')</script>"
-		}
-  	],
-  	"body": [
+			"name": "fbpixel",
+			"title": "Facebook Pixel",
+			"code": "<script>console.log('Facebook Pixel')</script>",
+			"tag": "head",
+			"position": "beforeend",
+			"enabled": false
+		},
 		{
-			"name": "gtm",
+			"name": "yametrica",
+			"title": "Яндекс Метрика",
+			"code": "<script>console.log('Яндекс Метрика')</script>",
+			"tag": "head",
+			"position": "beforeend",
+			"enabled": false
+		},
+		{
+			"name": "calllirax",
+			"title": "CallTracking Lirax",
+			"code": "<script>console.log('CallTracking Lirax')</script>",
+			"tag": "body",
+			"position": "beforeend",
+			"enabled": false
+		},
+		{
+			"name": "venyoo",
+			"title": "Venyoo",
+			"code": "<script>console.log('Venyoo')</script>",
+			"tag": "body",
+			"position": "beforeend",
+			"enabled": false
+		},
+		{
+			"name": "jivosite",
+			"title": "JivoSite",
+			"code": "<script>console.log('JivoSite')</script>",
+			"tag": "body",
+			"position": "beforeend",
+			"enabled": false
+		}
+	],
+	"other": [
+		{
+			"name": "head_beforeend",
+			"title": "Скрипт перед закрывающим тегом <head>",
+			"code": "<script>console.log('Other code Head)</script>",
+			"tag": "head",
+			"position": "beforeend",
+			"enabled": false
+		},
+		{
+			"name": "body_afterbegin",
+			"title": "Скрипт после открывающего тега <body>",
+			"code": "<script>console.log('Oher code Body afterbegin')</script>",
+			"tag": "body",
 			"position": "afterbegin",
-			"code": "<script>console.log('gtm body')</script>"
+			"enabled": false
 		},
 		{
-			"name": "gtm2",
+			"name": "body_beforeend",
+			"title": "Скрипт перед закрывающим тегом <body>",
+			"code": "<script>console.log('Oher code Body beforeend')</script>",
+			"tag": "body",
 			"position": "beforeend",
-			"code": "<script>console.log('gtm body')</script>"
-		},
-		{
-			"name": "yandex metrica",
-			"position": "beforeend",
-			"code": "<img src='test.jpg' alt=''>"
+			"enabled": false
 		}
-  	]
+	]
   }
 }

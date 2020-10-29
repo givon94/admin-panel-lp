@@ -3,7 +3,6 @@
             class="fill-height"
             fluid
     >
-        <p>{{findings.contacts}}</p>
         <v-row
                 align="center"
                 justify="center"
@@ -33,6 +32,14 @@
                             ></v-text-field>
                             <v-text-field
                                     id=""
+                                    label="Время работы"
+                                    name="work"
+                                    prepend-icon="mdi-clock-time-three"
+                                    type="text"
+                                    v-model="findings.work"
+                            ></v-text-field>
+                            <v-text-field
+                                    id=""
                                     label="E-mail (для контактов)"
                                     name="email"
                                     prepend-icon="mdi-email"
@@ -56,40 +63,14 @@
                                     v-for="(phone, index) of findings.contacts"
                                     :key="phone.operator"
                             >
-                            <v-text-field-simplemask
-                                    v-model="phone.num"
-                                    prepend-icon="mdi-map-marker"
-                                    label="Телефон"
-                                    name="phone"
-                                    v-bind:properties="{
-                                prefix: '',
-                                suffix: '',
-                                readonly: false,
-                                disabled: false,
-                                outlined: false,
-                                clearable: false,
-                                placeholder: '',
-                              }"
-                                    v-bind:options="{
-                                humanMask: '+###(##) ###-##-##',
-                                machineMask: '+###(##) ###-##-##',
-                                empty: null,
-                                applyAfter: false,
-                                alphanumeric: false,
-                                lowerCase: false,
-                              }"
-                                    v-bind:focus="focus"
-                                    v-on:focus="focus = false"
-                            />
-
-<!--                                <v-text-field-->
-<!--                                        id=""-->
-<!--                                        label="Телефон"-->
-<!--                                        name="phone"-->
-<!--                                        prepend-icon="mdi-phone-in-talk"-->
-<!--                                        type="text"-->
-<!--                                        v-model="phone.num"-->
-<!--                                ></v-text-field>-->
+                                <v-text-field
+                                        id=""
+                                        label="Телефон"
+                                        name="phone"
+                                        prepend-icon="mdi-phone-in-talk"
+                                        type="text"
+                                        v-model="phone.num"
+                                ></v-text-field>
                                 <v-col class="d-flex" cols="6" sm="3">
                                     <v-select
                                             :items="items"
@@ -114,7 +95,9 @@
                                 </v-col>
 
                                 <v-icon
+                                        color="red"
                                         class="pointer"
+                                        title="Удалить"
                                         left
                                         @click="delItemPhone(index)"
                                 >mdi-close</v-icon>
@@ -150,7 +133,6 @@
 
     export default {
         data: () => ({
-            focus: false,
             items: [
                 { state: 'A1', code: 'a1' },
                 { state: 'MTS', code: 'mts' },
@@ -183,7 +165,7 @@
                 this.number = '';
                 this.findings.contacts.push({
                     operator: this.op,
-                    num: ''
+                    num: this.number
                 })
             },
             delItemPhone: function(index){

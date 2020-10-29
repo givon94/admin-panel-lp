@@ -1,0 +1,106 @@
+{
+  "meta": [
+    {
+		"page": "index",
+		"title": "Заголовок 1",
+		"descr": "Описание 1",
+		"keywords": "Ключевые слова 1"
+    },
+    {
+		"page": "test2",
+		"title": "Заголовок 2",
+		"descr": "Описание 2",
+		"keywords": "Ключевые слова 2"
+    },
+	{
+		"page": "test3",
+		"title": "Заголовок 3",
+		"descr": "Описание 3",
+		"keywords": "Ключевые слова 3"
+    },
+	{
+		"page": "test4",
+		"title": "Заголовок 4",
+		"descr": "Описание 4",
+		"keywords": "Ключевые слова 4"
+    },
+		{
+		"page": "test5",
+		"title": "Заголовок 5",
+		"descr": "Описание 5",
+		"keywords": "Ключевые слова 5"
+    },
+	{
+		"page": "test6",
+		"title": "Заголовок 6",
+		"descr": "Описание 6",
+		"keywords": "Ключевые слова 6"
+    },
+	{
+		"page": "test7",
+		"title": "Заголовок 7",
+		"descr": "Описание 7",
+		"keywords": "Ключевые слова 7"
+    },
+		{
+		"page": "test8",
+		"title": "Заголовок 8",
+		"descr": "Описание 8",
+		"keywords": "Ключевые слова 8"
+    }
+  ],
+  "adress": "г. Минск ул. Пушкина д. калатушкина",
+  "email_contacts": "test@test.by",
+  "email_form": "testform@test.by",
+  "contacts": [
+	{
+		"operator": "a1",
+		"num": "+375(29) 11-11-111",
+		"messenger": ["viber", "telegram", "whatsapp"]
+	},
+	{
+		"operator": "mts",
+		"num": "+375(29) 22-22-222",
+		"messenger": []
+	},
+	{
+		"operator": "life",
+		"num": "+375(25) 33-33-333",
+		"messenger": []
+	},
+		{
+		"operator": "home",
+		"num": "+375(17) 44-44-444",
+		"messenger": ["viber", "whatsapp"]
+	}
+  ],
+  "scripts": {
+  	"head": [
+		{
+			"name": "gtm",
+			"code": "<script>console.log('gtm head')</script>"
+		},
+		{
+			"name": "yandex metrica",
+			"code": "<script>console.log('yandex metrica head')</script>"
+		}
+  	],
+  	"body": [
+		{
+			"name": "gtm",
+			"position": "afterbegin",
+			"code": "<script>console.log('gtm body')</script>"
+		},
+		{
+			"name": "gtm2",
+			"position": "beforeend",
+			"code": "<script>console.log('gtm body')</script>"
+		},
+		{
+			"name": "yandex metrica",
+			"position": "beforeend",
+			"code": "<img src='test.jpg' alt=''>"
+		}
+  	]
+  }
+}

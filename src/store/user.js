@@ -5,7 +5,8 @@ const dataBase = "api/database.json";
 export default {
     state: {
         auth: true,
-        findings: []
+        findings: [],
+        count: 1
     },
     getters: {
         AUTH : state => {
@@ -13,7 +14,10 @@ export default {
         },
         FINDINGS : state => {
             return state.findings
-        }
+        },
+        COUNT : state => {
+            return state.count
+        },
     },
     actions: {
         loadFindings ({ commit }) {
@@ -70,8 +74,34 @@ export default {
                 })
                 .finally(() => (commit('setLoading', false)));
         },
+        async uploadImg ({commit}, file) {
+            let formData = new FormData();
+
+            formData.append("image", file);
+
+            commit('clearSuccess')
+            commit('clearError')
+            commit('setLoading', true)
+            Axios
+                .post('./api/uploadImg.php', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(r => r.data)
+                .then(() => {
+                    commit('setSuccess', 'Успешно сохранено')
+                })
+                .catch(error => {
+                    commit('setLoading', false)
+                    commit('setError', 'Ошибка на сервере, повторите попытку позже')
+                    throw error
+                })
+                .finally(() => (commit('setLoading', false)));
+        },
     },
     mutations: {
+        increment: state => state.count++,
         SET_FINDINGS : (state, findings) => {
             state.findings = findings
         },

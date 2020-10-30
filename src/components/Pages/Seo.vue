@@ -15,7 +15,7 @@
         </div>
 
         <v-row
-                align="flex-start"
+                align="start"
                 justify="center"
                 style="margin: -25px;"
         >

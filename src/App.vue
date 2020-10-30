@@ -182,9 +182,4 @@
     cursor: pointer;
     user-select: none;
   }
-
-  .v-list-item * {
-    border: none !important;
-    text-decoration: none !important;
-  }
 </style>

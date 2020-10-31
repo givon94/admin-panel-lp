@@ -25,6 +25,15 @@
                         <v-form v-on:submit.prevent="onLogin" v-model="valid">
                             <v-text-field
                                     id=""
+                                    label="Введите email"
+                                    name="password"
+                                    prepend-icon="mdi-account"
+                                    type="email"
+                                    v-model="email"
+                                    :rules="emailRules"
+                            ></v-text-field>
+                            <v-text-field
+                                    id=""
                                     label="Введите пароль"
                                     name="password"
                                     prepend-icon="mdi-lock"
@@ -59,9 +68,14 @@
     export default {
         data () {
             return {
+                email: '',
                 password: '',
                 checkPassword: false,
                 valid: false,
+                emailRules: [
+                    v => !!v || 'Введите E-mail',
+                    v => /.+@.+\..+/.test(v) || 'E-mail должен быть корректный',
+                ],
                 passwordRules: [
                     v => !!v || 'Введите пароль',
                     v => (v && v.length >= 6) || 'Пароль должен содержать не менее 6 символов',
@@ -78,10 +92,13 @@
         },
         methods: {
             onLogin () {
-                const password = this.password
-                this.$store.dispatch('userLogin', password)
+                const user = {
+                    email: this.email,
+                    password: this.password
+                }
+                this.$store.dispatch('userLogin', user)
                 .then(() => {
-                    if(!this.auth === true) {
+                    if(this.auth === true) {
                         this.$router.push('/')
                     }
                 })

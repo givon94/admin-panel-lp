@@ -20,18 +20,18 @@ export default {
                     commit('USER_LOGOUT', res.data.logout)
                 })
         },
-        async userLogin ({commit}, password) {
+        async userLogin ({commit}, user) {
             commit('clearError')
             commit('setLoading', true)
             Axios
-                .post('./api/login.php',{'password': password})
+                .post('./api/login.php',{'user': user})
                 .then(res => {
                     if(res.data.auth === true){
                         commit('USER_LOGIN', res.data.auth)
                         commit('setLoading', false)
                     } else {
                         commit('setLoading', false)
-                        commit('setError', 'Введён неверный пароль')
+                        commit('setError', 'Введён неверный логин или пароль')
                     }
                 })
                 .catch(error => {

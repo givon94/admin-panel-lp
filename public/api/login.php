@@ -4,11 +4,14 @@ session_start();
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$password = $_POST['password'];
+$emailDefault = 'admin@pragma.by';
 $passwordDefault = 'qwerty';
 
+$password = $_POST['user']['password'];
+$email = $_POST['user']['email'];
+
 if ($password) {
-    if ($password == $passwordDefault) {
+    if ($password == $passwordDefault && $email == $emailDefault) {
         $_SESSION['auth'] = true;
 
         echo json_encode(['auth' => true]);

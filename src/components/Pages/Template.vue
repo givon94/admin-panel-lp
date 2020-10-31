@@ -1,31 +1,45 @@
 <template>
     <v-container>
+        <div class="my-2" style="margin: 0 auto 30px !important;">
+            <v-btn
+                    x-large
+                    color="success"
+                    @click="saveFindings"
+                    :loading="loading"
+                    dark
+            >Сохранить
+            </v-btn>
+        </div>
         <input type="file" accept="image/*" ref="fileInput" @change="uploadImg" style="display: none;">
         <v-layout column>
-            <v-card class="elevation-12 pa-5">
+            <v-card class="elevation-12 pa-5" style="margin: 15px 0;">
                 <h2>Фавиконка</h2>
                 <p>Фавиконка — это небольшая картинка, которая отображается в сниппете в результатах поиска, рядом с адресом сайта в адресной строке браузера.</p>
                 <p>Для загрузки фавиконки, изображение должно быть формата <b>PGN</b> и размером <b>192x192px</b>!</p>
                 <div class="img-wrapper"
-                     @click="triggerUpload"
+                     @click="triggerUpload('favicon')"
                      title="Загрузить новое изображение"
                 >
                     <img
-                            class="og-image"
                             style="max-width: 100%;"
                             :src="'../img/upload/' + findings.favicon"
                             alt="Фавиконка"
                     >
                     <span>Загрузить новое изображение <br><b>192x192px</b></span>
                 </div>
-                <div>
-                    <v-btn
-                            color="indigo"
-                            dark
-                            type="submit"
-                            @click="saveFindings"
-                            :loading="loading"
-                    >Сохранить</v-btn>
+            </v-card>
+            <v-card class="elevation-12 pa-5" style="margin: 15px 0;">
+                <h2>Логотип сайта</h2>
+                <div class="img-wrapper"
+                     @click="triggerUpload('logo')"
+                     title="Загрузить новое изображение"
+                >
+                    <img
+                            style="max-width: 100%;"
+                            :src="'../img/upload/' + findings.logo"
+                            alt="логотип сайта"
+                    >
+                    <span>Загрузить новое изображение</span>
                 </div>
             </v-card>
         </v-layout>
@@ -37,6 +51,9 @@
     const Axios = require('axios');
 
     export default {
+        data: () => ({
+            index: null,
+        }),
         mounted () {
             this.$store.dispatch('loadFindings')
         },
@@ -52,7 +69,8 @@
             }
         },
         methods: {
-            triggerUpload () {
+            triggerUpload (index) {
+                this.index = index
                 this.$refs.fileInput.click()
             },
             async uploadImg (e) {
@@ -68,9 +86,11 @@
                             }
                         })
                         .then((res)=>{
-                            this.findings.favicon = res.data.src
+                            this.findings[this.index] = res.data.src
+                            this.index = ''
                         })
                         .catch(error => {
+                            this.index = ''
                             this.$store.dispatch('setError', 'Ошибка на сервере, повторите попытку позже')
                             throw error
                         })
@@ -91,7 +111,6 @@
         position: relative;
         transition: all ease .3s;
         cursor: pointer;
-        margin-bottom: 20px;
     }
 
     .img-wrapper:before {
@@ -120,12 +139,12 @@
         align-items: center;
         text-align: center;
         color: transparent;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1.5;
         user-select: none;
     }
     .img-wrapper span>b {
-        font-size: 26px;
+        font-size: 22px;
     }
 
     .img-wrapper:hover span {

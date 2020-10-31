@@ -100,13 +100,7 @@
                   :value="true"
           >
             {{ success }}
-            <v-btn
-                    dark
-                    text
-                    @click="snackbar = closeError"
-            >
-              Закрыть
-            </v-btn>
+            <v-btn flat dark text @click.native="closeSuccess">Закрыть</v-btn>
           </v-snackbar>
         </template>
         <template v-if="error">
@@ -118,13 +112,7 @@
                   :value="true"
           >
             {{ error }}
-            <v-btn
-                    dark
-                    text
-                    @click="snackbar = closeError"
-            >
-              Закрыть
-            </v-btn>
+            <v-btn flat dark text @click.native="closeError">Закрыть</v-btn>
           </v-snackbar>
         </template>
       </v-container>
@@ -140,7 +128,15 @@
 
 <script>
 
+  const Axios = require('axios');
+
   export default {
+    beforeCreate() {
+      Axios.get('./api/checkAuth.php')
+          .then(res => {
+            this.$store.dispatch('autoLoginUser', res.data.auth)
+          })
+    },
     props: {
       source: String,
     },

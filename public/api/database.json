@@ -1,52 +1,47 @@
 {
+  "favicon": "favicon-192.png",
   "meta": [
     {
 		"page": "index",
 		"title": "Заголовок 1",
 		"descr": "Описание 1",
-		"keywords": "Ключевые слова 1"
+		"keywords": "Ключевые слова 1",
+		"image": "og_index.jpg"
     },
     {
 		"page": "test2",
 		"title": "Заголовок 2",
 		"descr": "Описание 2",
-		"keywords": "Ключевые слова 2"
+		"keywords": "Ключевые слова 2",
+		"image": "og_test2.jpg"
     },
 	{
 		"page": "test3",
 		"title": "Заголовок 3",
 		"descr": "Описание 3",
-		"keywords": "Ключевые слова 3"
+		"keywords": "Ключевые слова 3",
+		"image": "og_test3.jpg"
     },
 	{
 		"page": "test4",
 		"title": "Заголовок 4",
 		"descr": "Описание 4",
-		"keywords": "Ключевые слова 4"
+		"keywords": "Ключевые слова 4",
+		"image": "og_test4.jpg"
     },
 		{
 		"page": "test5",
 		"title": "Заголовок 5",
 		"descr": "Описание 5",
-		"keywords": "Ключевые слова 5"
+		"keywords": "Ключевые слова 5",
+		"image": "og_test5.jpg"
     },
 	{
 		"page": "test6",
 		"title": "Заголовок 6",
 		"descr": "Описание 6",
-		"keywords": "Ключевые слова 6"
-    },
-	{
-		"page": "test7",
-		"title": "Заголовок 7",
-		"descr": "Описание 7",
-		"keywords": "Ключевые слова 7"
-    },
-		{
-		"page": "test8",
-		"title": "Заголовок 8",
-		"descr": "Описание 8",
-		"keywords": "Ключевые слова 8"
+		"keywords": "Ключевые слова 6",
+		"image": "og_test6.jpg"
     }
   ],
   "adress": "г. Минск ул. Пушкина д. калатушкина",
@@ -57,22 +52,26 @@
 	{
 		"operator": "a1",
 		"num": "+375(29) 11-11-111",
-		"messenger": ["viber", "telegram", "whatsapp"]
+		"messenger": ["viber", "telegram", "whatsapp"],
+		"topbar": true
 	},
 	{
 		"operator": "mts",
 		"num": "+375(29) 22-22-222",
-		"messenger": []
+		"messenger": [],
+		"topbar": true
 	},
 	{
 		"operator": "life",
 		"num": "+375(25) 33-33-333",
-		"messenger": []
+		"messenger": [],
+		"topbar": false
 	},
-		{
+	{
 		"operator": "home",
 		"num": "+375(17) 44-44-444",
-		"messenger": ["viber", "whatsapp"]
+		"messenger": ["viber", "whatsapp"],
+		"topbar": false
 	}
   ],
   "scripts": {

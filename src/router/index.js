@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import AuthGuard from './auth-guard'
 import Home from '@/components/Home'
 import Seo from '@/components/Pages/Seo'
 import Template from '@/components/Pages/Template'
@@ -22,6 +23,7 @@ export default new Router({
             path: '/template',
             name: 'template',
             component: Template,
+            beforeEnter: AuthGuard
         },
         {
             path: '/login',
@@ -31,17 +33,20 @@ export default new Router({
         {
             path: '/contacts',
             name: 'contacts',
-            component: Contacts
+            component: Contacts,
+            beforeEnter: AuthGuard
         },
         {
             path: '/seo',
             name: 'seo',
-            component: Seo
+            component: Seo,
+            beforeEnter: AuthGuard
         },
         {
             path: '/code',
             name: 'code',
-            component: Code
+            component: Code,
+            beforeEnter: AuthGuard
         },
         {
             path: '/404',

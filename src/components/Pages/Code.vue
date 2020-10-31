@@ -32,7 +32,11 @@
                             color="indigo"
                     >
                         {{ findings.scripts.gtm.title }}
+
                         <template v-slot:actions>
+                            <v-icon color="white">$expand</v-icon>
+                        </template>
+                        <div style="padding-left: 10px;">
                             <v-icon
                                     v-if="findings.scripts.gtm.enabled"
                                     color="white"
@@ -41,7 +45,7 @@
                                     v-else
                                     color="white"
                             >mdi-close-thick</v-icon>
-                        </template>
+                        </div>
                     </v-expansion-panel-header>
                     <v-expansion-panel-content style="padding-top: 25px;">
                         <template>
@@ -84,21 +88,24 @@
         >
             <v-expansion-panel>
                 <v-expansion-panel-header
-                        disable-icon-rotate
+
                         style="color: white;"
                         color="indigo"
                 >
                     {{ list.title }}
                 <template v-slot:actions>
-                    <v-icon
-                            v-if="list.enabled"
-                            color="white"
-                    >mdi-check-bold</v-icon>
-                    <v-icon
-                            v-else
-                            color="white"
-                    >mdi-close-thick</v-icon>
+                    <v-icon color="white">$expand</v-icon>
                 </template>
+                    <div style="padding-left: 10px;">
+                        <v-icon
+                                v-if="list.enabled"
+                                color="white"
+                        >mdi-check-bold</v-icon>
+                        <v-icon
+                                v-else
+                                color="white"
+                        >mdi-close-thick</v-icon>
+                    </div>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content style="padding-top: 25px;">
                     <template>

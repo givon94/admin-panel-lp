@@ -31,6 +31,9 @@ export default {
         setSuccess ({commit}) {
             commit('clearSuccess')
         },
+        clearSuccess ({commit}) {
+            commit('clearSuccess')
+        },
         clearError ({commit}) {
             commit('clearError')
         }

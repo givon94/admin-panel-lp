@@ -5,11 +5,10 @@ session_start();
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 $password = $_POST['password'];
+$passwordDefault = 'qwerty';
 
 if ($password) {
-    $settings = json_decode(file_get_contents('./settings.json'), true);
-
-    if ($password == $settings['password']) {
+    if ($password == $passwordDefault) {
         $_SESSION['auth'] = true;
 
         echo json_encode(['auth' => true]);

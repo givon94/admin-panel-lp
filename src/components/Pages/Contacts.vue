@@ -93,7 +93,12 @@
                                             multiple
                                     ></v-select>
                                 </v-col>
-
+                                <v-checkbox
+                                        label="в топ-бар"
+                                        v-model="phone.topbar"
+                                        hide-details
+                                        class="shrink mr-2 mt-0 test"
+                                ></v-checkbox>
                                 <v-icon
                                         color="red"
                                         class="pointer"

@@ -7,7 +7,7 @@
             justify="center"
         >
             <div class="block-wrapper content-404">
-                <div class="error__404-images"><img class="error-image" src="/404-cat-not-found.gif" alt="Ошибка 404 с котиком" /></div>
+                <div class="error__404-images"><img class="error-image" src="404-cat-not-found.gif" alt="Ошибка 404 с котиком" /></div>
                 <h2 class="h1-404">Страница не найдена</h2>
                 <div class="my-2" style="text-align: center;">
                     <v-btn

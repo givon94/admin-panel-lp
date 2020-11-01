@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Seo from '@/components/Pages/Seo'
 import Template from '@/components/Pages/Template'
 import Contacts from '@/components/Pages/Contacts'
+import Backups from '@/components/Pages/Backups'
 import Code from '@/components/Pages/Code'
 import Login from '@/components/Auth/Login'
 import NotFound from '@/components/Pages/NotFound'
@@ -18,6 +19,12 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home
+        },
+        {
+            path: '/backup',
+            name: 'backup',
+            component: Backups,
+            beforeEnter: AuthGuard
         },
         {
             path: '/template',

@@ -11,7 +11,7 @@ export default {
     },
     actions: {
         loadFindings ({ commit }) {
-            let prefix = Math.random();
+            let prefix = Math.floor(Math.random() * 1000) + 1;
 
             Axios
                 .get('api/database.json?' + prefix)

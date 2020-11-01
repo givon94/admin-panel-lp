@@ -1,17 +1,16 @@
 <?php
-
 session_start();
+
+require_once dirname(dirname(dirname(__FILE__))) . '/admin/config.php';
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$emailDefault = 'admin@pragma.by';
-$passwordDefault = 'qwerty';
+$name = $_POST['user']['name'];
+$password = $_POST['user']['key'];
 
-$password = $_POST['user']['password'];
-$email = $_POST['user']['email'];
 
 if ($password) {
-    if ($password == $passwordDefault && $email == $emailDefault) {
+    if ($name === $GLOBALS['admin_name'] && $password === $GLOBALS['admin_password']) {
         $_SESSION['auth'] = true;
 
         echo json_encode(['auth' => true]);

@@ -25,11 +25,11 @@
                         <v-form v-on:submit.prevent="onLogin" v-model="valid">
                             <v-text-field
                                     id=""
-                                    label="Введите email"
-                                    name="password"
+                                    label="Введите логин"
+                                    name="name"
                                     prepend-icon="mdi-account"
-                                    type="email"
-                                    v-model="email"
+                                    type="text"
+                                    v-model="name"
                                     :rules="emailRules"
                             ></v-text-field>
                             <v-text-field
@@ -63,18 +63,16 @@
 
 
 <script>
-    //import { mapState } from 'vuex'
 
     export default {
         data () {
             return {
-                email: '',
+                name: '',
                 password: '',
                 checkPassword: false,
                 valid: false,
                 emailRules: [
-                    v => !!v || 'Введите E-mail',
-                    v => /.+@.+\..+/.test(v) || 'E-mail должен быть корректный',
+                    v => !!v || 'Введите логин',
                 ],
                 passwordRules: [
                     v => !!v || 'Введите пароль',
@@ -93,8 +91,8 @@
         methods: {
             onLogin () {
                 const user = {
-                    email: this.email,
-                    password: this.password
+                    name: this.name,
+                    key: this.password
                 }
                 this.$store.dispatch('userLogin', user)
                 .then(() => {

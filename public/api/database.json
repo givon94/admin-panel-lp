@@ -136,7 +136,7 @@
 	"other": [
 		{
 			"name": "head_beforeend",
-			"title": "Скрипт перед закрывающим тегом <head>",
+			"title": "Вставить скрипт перед закрывающим тегом <head>",
 			"code": "<script>console.log('Other code Head)</script>",
 			"tag": "head",
 			"position": "beforeend",
@@ -144,7 +144,7 @@
 		},
 		{
 			"name": "body_afterbegin",
-			"title": "Скрипт после открывающего тега <body>",
+			"title": "Вставить скрипт после открывающего тега <body>",
 			"code": "<script>console.log('Oher code Body afterbegin')</script>",
 			"tag": "body",
 			"position": "afterbegin",
@@ -152,7 +152,7 @@
 		},
 		{
 			"name": "body_beforeend",
-			"title": "Скрипт перед закрывающим тегом <body>",
+			"title": "Вставить скрипт перед закрывающим тегом <body>",
 			"code": "<script>console.log('Oher code Body beforeend')</script>",
 			"tag": "body",
 			"position": "beforeend",

@@ -27,27 +27,28 @@
             >
                 <v-expansion-panel>
                     <v-expansion-panel-header
-                            disable-icon-rotate
-                            style="color: white;"
-                            color="indigo"
+                            style="background: #fbfbfb; outline: 0;"
                     >
-                        {{ findings.scripts.gtm.title }}
-
+                        <img
+                                class="icon-service"
+                                src="img/code/gtm.png"
+                                alt="google tag manager"
+                        >
                         <template v-slot:actions>
-                            <v-icon color="white">$expand</v-icon>
+                            <v-icon color="black">$expand</v-icon>
                         </template>
-                        <div style="padding-left: 10px;">
+                        <div style="text-align: center;">
                             <v-icon
                                     v-if="findings.scripts.gtm.enabled"
-                                    color="white"
+                                    color="green"
                             >mdi-check-bold</v-icon>
                             <v-icon
                                     v-else
-                                    color="white"
+                                    color="red"
                             >mdi-close-thick</v-icon>
                         </div>
                     </v-expansion-panel-header>
-                    <v-expansion-panel-content style="padding-top: 25px;">
+                    <v-expansion-panel-content style="padding-top: 25px; border-top: 1px solid #c5c5c5;">
                         <template>
                             <v-textarea
                                     v-model="findings.scripts.gtm.code_head"
@@ -88,26 +89,28 @@
         >
             <v-expansion-panel>
                 <v-expansion-panel-header
-
-                        style="color: white;"
-                        color="indigo"
+                        style="background: #fbfbfb; outline: 0;"
                 >
-                    {{ list.title }}
+                    <img
+                            class="icon-service"
+                            :src="'img/code/' + list.name + '.png'"
+                            :alt=list.title
+                    >
                 <template v-slot:actions>
-                    <v-icon color="white">$expand</v-icon>
+                    <v-icon color="black">$expand</v-icon>
                 </template>
-                    <div style="padding-left: 10px;">
+                    <div style="text-align: center;">
                         <v-icon
                                 v-if="list.enabled"
-                                color="white"
+                                color="green"
                         >mdi-check-bold</v-icon>
                         <v-icon
                                 v-else
-                                color="white"
+                                color="red"
                         >mdi-close-thick</v-icon>
                     </div>
                 </v-expansion-panel-header>
-                <v-expansion-panel-content style="padding-top: 25px;">
+                <v-expansion-panel-content style="padding-top: 25px; border-top: 1px solid #c5c5c5;">
                     <template>
                         <v-textarea
                                 label="Скрипт"
@@ -129,14 +132,16 @@
                 </v-expansion-panel-content>
             </v-expansion-panel>
         </v-expansion-panels>
-
-
-
-
         </v-row>
+
+
+
         <template>
             <div class="divider"></div>
         </template>
+
+
+
         <v-row
                 align="start"
                 justify="center"
@@ -207,6 +212,14 @@
 
 
 <style scoped>
+    .mdi:before, .mdi-set {
+        font-size: 36px;
+    }
+
+    .icon-service {
+        flex: none !important;
+    }
+
     .divider {
         width: 100%;
         height: 1px;

@@ -62,11 +62,31 @@
                             rows="1"
                             v-model="link.keywords"
                     ></v-textarea>
+
+                    <div style="margin-bottom: 10px">
+                        <span style="font-size: 16px; font-weight: 400; margin-right: 5px;">Open Graph Image</span>
+                        <v-tooltip bottom max-width="280px">
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-icon
+                                        style="font-size: 18px;"
+                                        color="primary"
+                                        dark
+                                        v-bind="attrs"
+                                        v-on="on"
+                                >mdi-help-circle</v-icon>
+                            </template>
+                            <span>Open Graph Image позволяет контролировать превью картинки, которое формируется при публикации ссылки на сайт в социальных сетях.</span>
+                        </v-tooltip>
+                    </div>
                     <img
+                            style="border: 1px solid #d3d3d3;"
                             class="img"
                             :src="'img/upload/' + link.image"
                             alt="og image"
                     >
+                    <div style="margin-bottom: 15px;">
+                        <span>Размер изображения должен быть <b>968×504 пикселя!</b></span>
+                    </div>
                     <div>
                         <v-btn class="warning" @click="triggerUpload(index)">
                             Загрузить изображение

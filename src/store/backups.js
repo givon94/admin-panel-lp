@@ -33,7 +33,7 @@ export default {
                 .post('api/restoreBackup.php',{'file': backup.file, 'name': backup.name, 'time': backup.time})
                 .then(r => r.data)
                 .then(() => {
-                    commit('setSuccess', 'Резервная копия загружена загружена')
+                    commit('setSuccess', 'Резервная копия успешно загружена')
                 })
                 .catch(error => {
                     commit('setError', 'Ошибка на сервере, повторите попытку позже')

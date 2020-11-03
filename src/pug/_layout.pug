@@ -1,0 +1,45 @@
+include common/_variables
+include common/_mixins
+include common/_svg
+
+doctype html
+html#app(lang='ru-RU')
+    head
+        +meta-header
+        block title-description
+            title
+            meta(name='title', content='')
+            meta(name='description', content='')
+            meta(name='keywords', content='')
+
+        block open-graph
+            +open-graph
+        +Manifest
+        +favicon
+        +android-color
+
+        +style-main
+        +css('css/header.css?v=1.0.0')
+        +css-onload('css/main.css?v=1.0.0')
+
+
+
+    body
+        +ifIE
+
+        block content
+            include common/_top-bar
+        block header
+        main
+            block main
+        include common/_footer
+
+
+        script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+
+        script.
+            window.jQuery ||
+            document.write('<script src="js/jquery-3.3.1.min.js"><\/script>')
+
+        script(async='', src='js/admin.js?v=1.0.0')
+        script(async='', src='js/build.js?v=1.0.0')

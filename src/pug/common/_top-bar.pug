@@ -1,0 +1,18 @@
+.top-bar
+    .top-bar-content
+        img.main-logo.top-bar-logo(src='', alt='логотип компании')
+
+        .top-bar__contact
+        //-.top-bar__contact
+            .top-bar__phones
+                +svg-a1(true)
+                a(href='tel:+375291231212') +375(29) 123-12-12
+                +svg-viber(true)
+            .top-bar__phones
+                +svg-mts(true)
+                a(href='tel:+375331231212') +375(33) 123-12-12
+
+        form.top-bar_form
+            input(type='hidden', name='form_name', value='Заказать звонок (топ бар)')
+            input.form-phone.top-bar_form-phone(type='tel', name='phone', placeholder='Впишите телефон')
+            button(type='submit').form-btn.top-bar_form-btn ЗАКАЗАТЬ ЗВОНОК

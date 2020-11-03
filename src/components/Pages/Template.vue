@@ -2,7 +2,7 @@
     <v-container>
         <div class="my-2" style="margin: 0 auto 30px !important;">
             <v-btn
-                    x-large
+                    large
                     color="success"
                     @click="saveFindings"
                     :loading="loading"

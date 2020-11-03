@@ -5,7 +5,7 @@ import Axios from "axios";
 
 export default {
     state: {
-        auth: false
+        auth: true
     },
     getters: {
         AUTH : state => {

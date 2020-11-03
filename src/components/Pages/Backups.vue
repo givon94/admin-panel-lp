@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-        <v-col cols="8" sm="4" offset-sm="3">
+    <v-container fluid>
+        <v-flex >
             <v-card class="elevation-12 pa-10">
                 <h2 style="margin-bottom: 20px;">Резервные копии</h2>
                 <p v-if="backupList.length == 0">Не найдено резервных копий.</p>
@@ -22,7 +22,7 @@
                     </v-list-item>
                 </div>
             </v-card>
-        </v-col>
+        </v-flex>
     </v-container>
 </template>
 

@@ -38,11 +38,12 @@
             app
             color="indigo"
             dark
+            :hide-on-scroll="test"
     >
       <v-app-bar-nav-icon
               @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
-      <router-link to="/" tag="span" class="pointer" style="font-size: 22px;">Панель администратора</router-link>
+      <router-link to="/" tag="span" class="admin-title pointer">Панель администратора</router-link>
 
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -67,17 +68,12 @@
           Выйти
         </v-btn>
       </v-toolbar-items>
-
-
     </v-app-bar>
-    <v-main style="padding: 50px;">
-      <v-container
-              class="fill-height"
-              fluid
-      >
-        <v-main>
+    <v-main pa-0>
+      <v-container fluid fill-height>
+        <div>
           <router-view></router-view>
-        </v-main>
+        </div>
         <template v-if="success">
           <v-snackbar
                   color="success"
@@ -116,21 +112,29 @@
 
 <script>
 
-  const Axios = require('axios');
+  //const Axios = require('axios');
 
   export default {
-    created() {
-      Axios.get('./api/checkAuth.php')
-          .then(res => {
-            this.$store.dispatch('autoLoginUser', res.data.auth)
-          })
-    },
+    // created() {
+    //   Axios.get('./api/checkAuth.php')
+    //       .then(res => {
+    //         this.$store.dispatch('autoLoginUser', res.data.auth)
+    //       })
+    // },
     props: {
       source: String,
     },
     data: () => ({
       drawer: null,
+      test: true,
     }),
+    mounted() {
+      const mediaQuery = window.matchMedia("(max-width:1263px)");
+      this.test = mediaQuery.matches;
+      const listener = e => this.test = e.matches;
+      mediaQuery.addListener(listener);
+      this.$once('hook:beforeDestroy', () => mediaQuery.removeListener(listener));
+    },
     computed: {
       error () {
         return this.$store.getters.error
@@ -177,8 +181,25 @@
 
 
 <style scoped>
+
+  /*.v-app-bar--is-scrolled .v-app-bar__nav-icon {*/
+  /*  position: relative;*/
+  /*  top: 70px;*/
+  /*  transition-delay: .3s !important;*/
+  /*}*/
+
+  /*.v-app-bar--is-scrolled .v-btn--icon {*/
+  /*  color: red !important;*/
+  /*}*/
+
   .pointer {
     cursor: pointer;
     user-select: none;
+  }
+
+  @media (min-width: 600px) {
+    .admin-title {
+      font-size: 22px;
+    }
   }
 </style>

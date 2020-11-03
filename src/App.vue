@@ -3,6 +3,7 @@
     <v-navigation-drawer
             v-model="drawer"
             app
+            clipped
     >
       <v-list nav>
         <v-list-item
@@ -18,7 +19,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-divider v-if="auth"></v-divider>
+        <v-divider></v-divider>
 
         <v-list-item
                 @click="onLogout"
@@ -31,6 +32,14 @@
             <v-list-item-title v-text="'Выйти'"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/settings">
+          <v-list-item-icon>
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title v-text="'Настройки'"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -38,6 +47,7 @@
             app
             color="indigo"
             dark
+            clipped-left
             :hide-on-scroll="test"
     >
       <v-app-bar-nav-icon
@@ -69,11 +79,9 @@
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-main pa-0>
-      <v-container fluid fill-height>
-        <div>
-          <router-view></router-view>
-        </div>
+    <v-main>
+      <v-container fluid fill-height px-0 py-7 pa-sm-5 pa-lg-16>
+        <router-view></router-view>
         <template v-if="success">
           <v-snackbar
                   color="success"
@@ -121,6 +129,9 @@
     //         this.$store.dispatch('autoLoginUser', res.data.auth)
     //       })
     // },
+    // created() {
+    //   this.$vuetify.theme.dark = false
+    // },
     props: {
       source: String,
     },
@@ -148,7 +159,7 @@
       links () {
         if (this.auth) {
           return [
-            {title: 'Резервные копии', icon: 'mdi-cog', url: '/backup'},
+            {title: 'Резервные копии', icon: 'mdi-cloud-upload', url: '/backup'},
             {title: 'Шаблон', icon: 'mdi-home', url: '/template'},
             {title: 'SEO', icon: 'mdi-clipboard-text', url: '/seo'},
             {title: 'Контакты', icon: 'mdi-email', url: '/contacts'},
@@ -181,17 +192,6 @@
 
 
 <style scoped>
-
-  /*.v-app-bar--is-scrolled .v-app-bar__nav-icon {*/
-  /*  position: relative;*/
-  /*  top: 70px;*/
-  /*  transition-delay: .3s !important;*/
-  /*}*/
-
-  /*.v-app-bar--is-scrolled .v-btn--icon {*/
-  /*  color: red !important;*/
-  /*}*/
-
   .pointer {
     cursor: pointer;
     user-select: none;

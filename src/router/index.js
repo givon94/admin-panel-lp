@@ -8,6 +8,7 @@ import Contacts from '@/components/Pages/Contacts'
 import Backups from '@/components/Pages/Backups'
 import Code from '@/components/Pages/Code'
 import Login from '@/components/Auth/Login'
+import Settings from '@/components/Pages/Settings'
 import NotFound from '@/components/Pages/NotFound'
 
 Vue.use(Router)
@@ -54,6 +55,11 @@ export default new Router({
             name: 'code',
             component: Code,
             beforeEnter: AuthGuard
+        },
+        {
+            path: '/settings',
+            name: 'settings',
+            component: Settings
         },
         {
             path: '/404',

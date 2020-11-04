@@ -77,6 +77,32 @@ img {
   background-size: cover;
 }
 
+.logo-viber {
+  transform: translateY(2px);
+}
+
+
+#toTop {
+  transition: all ease .3s;
+  opacity: .7;
+  z-index: 999;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  display: none;
+  &:hover {
+    opacity: 1;
+  }
+  p {
+    display: none;
+  }
+}
+
+#buttonTop {
+  width: 40px;
+  height: 40px;
+}
 
 .section-title {
   text-align: center;
@@ -131,6 +157,10 @@ img {
       font-size: 36px;
     }
   }
+
+  #toTop {
+    bottom: 50px;
+  }
 }
 
 
@@ -139,5 +169,27 @@ img {
     &-title {
       font-size: 40px;
     }
+  }
+
+  #toTop {
+    & p {
+      display: block;
+      text-align: center;
+      color: #333;
+      padding-top: 2px;
+      font-weight: 400;
+    }
+  }
+
+  #buttonTop {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  #toTop {
+    bottom: 100px;
   }
 }

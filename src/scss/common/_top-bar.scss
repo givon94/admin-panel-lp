@@ -5,42 +5,36 @@
   top: 0;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.14);
   background-color: #fff;
-  padding: 10px 0;
+  padding: 10px;
   &-content {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
   }
-  &__contact {
-    display: flex;
-    flex-direction: column;
-    height: 60px;
-    justify-content: space-around;
-    margin: 5px 0;
-    & svg {
-      margin: 0 5px;
-    }
+  &-logo {
+    max-width: 220px;
+    max-height: 70px;
   }
-  &__phones {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    &>a {
-      color: #555;
-      &:hover {
-        color: #7f7f7f;
-      }
+  &__contact {
+    margin: -5px 0;
+    & .phone-number {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+    & svg {
+      margin-right: 5px;
+    }
+    & .icon-messenger {
+      margin: 0 0 0 7px;
     }
   }
   &_form {
     display: none;
   }
 }
-
-//.icon-telegram {
-//  margin-right: 5px;
-//}
 
 
 
@@ -60,23 +54,24 @@
   .top-bar {
     position: fixed;
     width: 100%;
-    padding: 5px 0;
     &-content {
       max-width: 1065px;
     }
-    &__phones {
-      font-size: 18px;
+    &__contact {
+      & .phone-number {
+        font-size: 18px;
+      }
     }
     &_form {
       display: flex;
       &-phone {
-        width: 210px;
+        width: 200px;
         height: 46px;
         margin: 0 15px 0 0;
       }
       &-btn {
         font-size: 18px;
-        width: 216px;
+        width: 200px;
         height: 46px;
         margin: 0;
       }
@@ -88,8 +83,18 @@
 //- Large
 @media (min-width: 1200px) {
   .top-bar {
-    &__phones {
-      font-size: 20px;
+    &__contact {
+      & .phone-number {
+        font-size: 20px;
+      }
+    }
+    &_form {
+      &-phone {
+        width: 220px;
+      }
+      &-btn {
+        width: 210px;
+      }
     }
   }
 }

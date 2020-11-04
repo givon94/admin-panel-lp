@@ -10,15 +10,9 @@
     align-items: center;
     margin: 0 auto;
   }
-  &-icon {
-    &-pragma {
-      margin-top: 3px;
-      margin-bottom: 3px;
-      height: 18px;
-      width: 100px;
-      align-self: center;
-      margin-left: -10px;
-    }
+  &-logo {
+    max-width: 220px;
+    max-height: 70px;
   }
   &-contact {
     display: flex;
@@ -40,13 +34,6 @@
       &:hover {
         color: #7f7f7f;
       }
-    }
-  }
-  &-pragma {
-    text-align: center;
-    &>svg {
-      display: block;
-      margin: 5px auto 0;
     }
   }
 }
@@ -80,6 +67,11 @@
     }
     &-item {
       margin-bottom: 5px;
+      &-phones {
+        & span {
+          display: block;
+        }
+      }
       &-lists {
         list-style-type: disc;
         padding-left: 0;

@@ -1,3 +1,5 @@
+const replace = require('gulp-replace-task');
+
 module.exports = function () {
     $.gulp.task('pug', () => {
         return $.gulp.src('src/pug/pages/*.pug')
@@ -5,6 +7,14 @@ module.exports = function () {
                 locals: $.locals,
                 pretty: true
 
+            }))
+            .pipe(replace({
+                patterns: [
+                    {
+                        match: /&#32;/g,
+                        replacement: ''
+                    }
+                ]
             }))
             .on('error', $.gp.notify.onError(
                 function (error) {
@@ -23,6 +33,14 @@ module.exports = function () {
                 locals: $.locals,
                 pretty: false
             }))
+            .pipe(replace({
+                patterns: [
+                    {
+                        match: /&#32;/g,
+                        replacement: ''
+                    }
+                ]
+            }))
             .on('error', $.gp.notify.onError(
                 function (error) {
                     return {
@@ -34,8 +52,3 @@ module.exports = function () {
             .pipe($.gulp.dest($.ppath.release))
     });
 };
-
-
-
-
-

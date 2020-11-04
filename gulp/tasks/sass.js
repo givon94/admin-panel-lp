@@ -36,11 +36,11 @@ module.exports = function () {
             .on('error', $.gp.notify.onError({
                 title: 'Style'
             }))
-    		.pipe($.gp.purgecss({
-    			content: [REL_DIR_HTML, REL_DIR_JS],
-    			fontFace: false,
-    			keyframes: true
-    		}))
+            .pipe($.gp.purgecss({
+                content: [REL_DIR_HTML, REL_DIR_JS],
+                fontFace: false,
+                keyframes: true
+            }))
             .pipe($.gp.autoprefixer({
                 cascade: false
             }))

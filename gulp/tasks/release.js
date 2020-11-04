@@ -4,6 +4,7 @@ module.exports = function () {
   	'rel-del',
     'pug-rel',
     'js-rel',
+	'js-admin-rel',
      $.gulp.parallel(
 		 'video-rel',
 		 'imagesOther-rel',

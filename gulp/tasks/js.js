@@ -8,16 +8,44 @@ const jsFiles = [
    
 module.exports = function () {        
   
-  $.gulp.task('js-rel', () => {
-      return $.gulp.src(jsFiles, {base: './src/js'})  
-        .pipe($.gp.concat('build.js'))  
+	$.gulp.task('js-rel', () => {
+	  return $.gulp.src(jsFiles, {base: './src/js'})  
+	    .pipe($.gp.concat('build.js'))  
+	    .pipe($.gp.plumber())  
+	    .pipe($.gp.babel({
+	      presets: [
+	        ['@babel/env', {
+	          modules: false
+	        }]
+	      ]
+	    }))
+	    .pipe($.gp.uglify())
+	  .pipe($.gulp.dest($.ppath.release + $.ppath.js.dest));
+	});
+
+  	$.gulp.task('js-admin', () => {
+       return $.gulp.src('./src/js/admin.js')
         .pipe($.gp.plumber())  
         .pipe($.gp.babel({
-          presets: [
-            ['@babel/env', {
-              modules: false
-            }]
-          ]
+        presets: [
+          ['@babel/env', {
+            modules: false
+          }]
+        ]
+        }))
+        .pipe($.gulp.dest($.ppath.DIST + $.ppath.js.dest));
+    });
+
+
+  	$.gulp.task('js-admin-rel', () => {
+      return $.gulp.src('./src/js/admin.js')
+        .pipe($.gp.plumber())  
+        .pipe($.gp.babel({
+        presets: [
+          ['@babel/env', {
+            modules: false
+          }]
+        ]
         }))
         .pipe($.gp.uglify())
       .pipe($.gulp.dest($.ppath.release + $.ppath.js.dest));

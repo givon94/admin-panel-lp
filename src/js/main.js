@@ -1,5 +1,17 @@
 $(document).ready(function() {
 
+    //- Всплывающее окно контакты
+    $('#footerContactsButton').click(function() {
+        $('#footerContactsModal').slideToggle('300');
+        $('#footerContactsModal').toggleClass('.footer-contacts-window-active');
+    });
+
+    $('#footerContactsClose').click(function() {
+        $('#footerContactsModal').slideToggle('300');
+    });
+
+
+
     $('input[type=tel]').inputmask("+375(99) 999-99-99");
 
 

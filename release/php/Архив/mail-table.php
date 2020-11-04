@@ -26,6 +26,78 @@
 	$utm_term =  htmlspecialchars($_POST['term']);
 
 
+	$table = '';
+	$wardrobe_quiz = htmlspecialchars($_POST['wardrobe_quiz']);
+	$wardrobe_type = htmlspecialchars($_POST['wardrobe_type']);
+	$wardrobe_material = htmlspecialchars($_POST['wardrobe_material']);
+	$wardrobe_door = htmlspecialchars($_POST['wardrobe_door']);
+	$wardrobe_room = htmlspecialchars($_POST['wardrobe_room']);
+	$wardrobe_gift = htmlspecialchars($_POST['wardrobe_gift']);
+	$wardrobe_cell = htmlspecialchars($_POST['wardrobe_cell']);
+
+
+	$calc_quiz = htmlspecialchars($_POST['calc_quiz']);
+	$calc_height = htmlspecialchars($_POST['calc_height']);
+	$calc_length = htmlspecialchars($_POST['calc_length']);
+	$calc_width = htmlspecialchars($_POST['calc_width']);
+	$calc_door = htmlspecialchars($_POST['calc_door']);
+
+
+
+	if (!empty($wardrobe_quiz)){
+
+		$table ='<table style="width: 900px; border-collapse: collapse; margin-top: 15px;">
+			<tbody>
+				<tr>
+					<th style="border: 1px solid #333333; padding: 5px;">Тип шкафа</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Материал</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Фасад дверей</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Комната</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Подарок</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Куда отправить</th>
+				</tr>
+				<tr>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$wardrobe_type.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$wardrobe_material.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$wardrobe_door.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$wardrobe_room.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$wardrobe_gift.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$wardrobe_cell.'</td>
+				</tr>
+			</tbody>
+		</table>';
+	}
+
+
+	if (!empty($calc_quiz)){
+
+		if (!empty($_POST['calc_additional'])){
+			foreach ($_POST['calc_additional'] as $key=>$value) {
+		    	$calc_additional .= htmlspecialchars($value) . "<br>";
+			}
+		}
+
+		$table ='<table style="width: 900px; border-collapse: collapse; margin-top: 15px;">
+			<tbody>
+				<tr>
+					<th style="border: 1px solid #333333; padding: 5px;">Высота, см</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Ширина, см</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Глубина, см</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Кол-во дверей</th>
+					<th style="border: 1px solid #333333; padding: 5px;">Доборы</th>
+				</tr>
+				<tr>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$calc_height.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$calc_length.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$calc_width.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$calc_door.'</td>
+					<td style="border: 1px solid #333333; padding: 5px;">'.$calc_additional.'</td>
+				</tr>
+			</tbody>
+		</table>';
+    }
+
+
 
 	$message ="
 	<!DOCTYPE html>
@@ -98,7 +170,8 @@
 						<td>$user_ip</td>
 					</tr>
 				</tbody>
-			</table>	
+			</table>
+			$table	
 		</body>
 	</html>
 	";

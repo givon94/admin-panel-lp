@@ -65,7 +65,8 @@ $.gulp.task('default', $.gulp.series(
    $.gulp.parallel(
        'sass',
        'pug',
-       'js'
+	   'js-admin',
+       'js',
    ),
    $.gulp.parallel(
        'watch',

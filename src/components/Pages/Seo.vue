@@ -90,7 +90,7 @@
                             <span>Размер изображения должен быть <b>968×504 пикселя!</b></span>
                         </div>
                         <div>
-                            <v-btn class="warning btn-upload" @click="triggerUpload(index)">
+                            <v-btn class="btn-upload" color="btnUpload" dark @click="triggerUpload(index)">
                                 Загрузить изображение
                                 <v-icon right dark>mdi-cloud-upload-outline</v-icon>
                             </v-btn>

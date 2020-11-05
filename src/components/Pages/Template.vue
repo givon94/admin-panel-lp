@@ -27,7 +27,7 @@
                             alt="логотип сайта"
                     >
                     <div>
-                        <v-btn class="warning btn-upload" @click="triggerUpload('favicon')">
+                        <v-btn class="btn-upload" color="btnUpload" dark @click="triggerUpload('favicon')">
                             Загрузить изображение
                             <v-icon right dark>mdi-cloud-upload-outline</v-icon>
                         </v-btn>
@@ -45,7 +45,7 @@
                             alt="логотип сайта"
                     >
                     <div>
-                        <v-btn class="warning btn-upload" @click="triggerUpload('logo')">
+                        <v-btn class="btn-upload" color="btnUpload" dark @click="triggerUpload('logo')">
                             Загрузить изображение
                             <v-icon right dark>mdi-cloud-upload-outline</v-icon>
                         </v-btn>
@@ -142,7 +142,7 @@
             zoom: normal;
         }
     }
-    
+
     @media (min-width: 1263px) {
         .item {
             max-width: 50% !important;

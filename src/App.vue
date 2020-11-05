@@ -120,18 +120,20 @@
 
 <script>
 
-  //const Axios = require('axios');
+  const Axios = require('axios');
 
   export default {
-    // created() {
-    //   Axios.get('./api/checkAuth.php')
-    //       .then(res => {
-    //         this.$store.dispatch('autoLoginUser', res.data.auth)
-    //       })
-    // },
-    // created() {
-    //   this.$vuetify.theme.dark = false
-    // },
+    created() {
+      let themeColor  = localStorage.getItem('themeDark')
+      themeColor === 'true' ? themeColor = true : themeColor = false
+      this.$vuetify.theme.dark = themeColor
+
+      Axios.get('./api/checkAuth.php')
+          .then(res => {
+            this.$store.dispatch('autoLoginUser', res.data.auth)
+            if(!res.data.auth) this.$router.push('/login')
+          })
+    },
     props: {
       source: String,
     },
@@ -159,11 +161,11 @@
       links () {
         if (this.auth) {
           return [
-            {title: 'Резервные копии', icon: 'mdi-cloud-upload', url: '/backup'},
-            {title: 'Шаблон', icon: 'mdi-home', url: '/template'},
-            {title: 'SEO', icon: 'mdi-clipboard-text', url: '/seo'},
             {title: 'Контакты', icon: 'mdi-email', url: '/contacts'},
+            {title: 'Отображение', icon: 'mdi-home', url: '/template'},
+            {title: 'SEO', icon: 'mdi-clipboard-text', url: '/seo'},
             {title: 'Скрипты', icon: 'mdi-code-not-equal-variant', url: '/code'},
+            {title: 'Резервные копии', icon: 'mdi-cloud-upload', url: '/backup'},
           ]
         } else {
           return [

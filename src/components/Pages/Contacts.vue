@@ -1,28 +1,22 @@
 <template>
-    <v-container
-            class="fill-height"
-            fluid
-    >
+    <v-container fluid>
         <v-row
                 align="center"
                 justify="center"
+                class="ma-0"
         >
-            <v-col
-                    cols="12"
-                    sm="10"
-                    md="8"
-            >
-                <v-card class="elevation-12">
+
+            <v-flex style="max-width: 1070px;">
+                <v-card>
                     <v-toolbar
                             color="indigo"
                             dark
                             flat
                     >
-                        <v-toolbar-title class="pa-7">Контакты</v-toolbar-title>
+                        <v-toolbar-title class="pa-3 pa-md-7">Контакты</v-toolbar-title>
                     </v-toolbar>
-                    <v-card-text class="pa-10">
+                    <v-card-text class="pa-5 pa-md-10">
                         <v-text-field
-                                id=""
                                 label="Адрес"
                                 name="adress"
                                 prepend-icon="mdi-map-marker"
@@ -30,7 +24,6 @@
                                 v-model="findings.adress"
                         ></v-text-field>
                         <v-text-field
-                                id=""
                                 label="Время работы"
                                 name="work"
                                 prepend-icon="mdi-clock-time-three"
@@ -38,7 +31,6 @@
                                 v-model="findings.work"
                         ></v-text-field>
                         <v-text-field
-                                id=""
                                 label="E-mail (для контактов)"
                                 name="email"
                                 prepend-icon="mdi-email"
@@ -46,7 +38,6 @@
                                 v-model="findings.email_contacts"
                         ></v-text-field>
                         <v-text-field
-                                id=""
                                 label="E-mail (для форм)"
                                 name="email"
                                 prepend-icon="mdi-email"
@@ -59,22 +50,24 @@
 
                         <h5 style="font-weight: 400; font-size: 20px; margin-top: 25px;">Телефоны:</h5>
                         <v-row
+                                class="phone-list ma-0"
                                 align="center"
-                                style="padding-left: 10px;"
                                 v-for="(phone, index) of findings.contacts"
                                 :key="phone.operator"
                         >
-                            <v-text-field
-                                    id=""
-                                    label="Телефон"
-                                    name="phone"
-                                    prepend-icon="mdi-phone-in-talk"
-                                    type="text"
-                                    v-model="phone.num"
-                            ></v-text-field>
+                            <!--Телефон-->
+                            <v-col class="pa-0 pa-md-3 pl-md-0" cols="12" sm="6" md="">
+                                <v-text-field
+                                        label="Телефон"
+                                        name="phone"
+                                        prepend-icon="mdi-phone-in-talk"
+                                        type="text"
+                                        v-model="phone.num"
+                                ></v-text-field>
+                            </v-col>
 
                             <!--Оператор-->
-                            <v-col class="d-flex" cols="6" sm="3">
+                            <v-col class="d-flex align-center pa-0 pl-9 pa-md-3" cols="12" sm="6" md="2">
                                 <v-select
                                         :items="items"
                                         item-text="state"
@@ -98,7 +91,7 @@
                             </v-col>
 
                             <!--Мессенджеры-->
-                            <v-col class="d-flex" cols="5" sm="3">
+                            <v-col class="d-flex align-center pa-0 pl-9 pa-md-3" cols="12" sm="6" md="4">
                                 <v-select
                                         :items="messengers"
                                         item-text="state"
@@ -125,12 +118,12 @@
 
 
                             <!--Закрпепить в топ бар-->
-                            <div class="block__phone-item">
+                            <div class="block__phone-item pl-9 pa-md-3">
                                 <v-checkbox
                                         label="топ-бар"
                                         v-model="phone.topbar"
                                         hide-details
-                                        class="shrink mr-2 mt-0 test"
+                                        class="shrink mr-2 mt-0"
                                 ></v-checkbox>
                                 <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">
@@ -148,42 +141,60 @@
 
 
                             <!--Удалить номер-->
-                            <v-tooltip bottom>
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-icon
-                                            style="font-size: 30px;"
-                                            class="pointer"
-                                            color="red"
-                                            dark
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            @click="delItemPhone(index)"
-                                    >mdi-close</v-icon>
-                                </template>
-                                <span>Удалить данный телефон</span>
-                            </v-tooltip>
+                            <div class="btn-delete d-flex align-center pl-9 pa-md-3 pr-md-0 mt-5 ma-sm-0 ml-sm-auto">
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-icon
+                                                style="font-size: 30px;"
+                                                class="pointer"
+                                                color="red"
+                                                dark
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                @click="delItemPhone(index)"
+                                        >mdi-close</v-icon>
+                                    </template>
+                                    <span>Удалить данный телефон</span>
+                                </v-tooltip>
+                                <span class="btn-delete-title">Удалить номер</span>
+                            </div>
+
+                            <div class="divider">
+                                <v-divider class="d-block my-8" color="indigo"></v-divider>
+                            </div>
                         </v-row>
-                        <v-card-actions class="pa-0">
-                            <v-spacer></v-spacer>
-                            <v-btn class="ma-2"
+                        <v-card-actions class="flex-column flex-md-row align-start pa-0">
+                            <v-btn class="mb-5 mb-md-0 mr-md-5"
                                    tile
                                    outlined
-                                   color="success"
+                                   color="btnAdd"
                                    @click="addItemPhone"
                             >
                                 <v-icon left>mdi-phone-plus</v-icon> Добавить телефон
                             </v-btn>
-                            <v-btn
-                                    color="indigo"
+                            <v-btn class="ma-0"
+                                    color="success"
                                     dark
                                     type="submit"
                                     @click="saveFindings"
                                     :loading="loading"
                             >Сохранить</v-btn>
                         </v-card-actions>
+                        <div style="margin-top: 30px;">
+                            <p style="font-size: 16px;">
+                                *Наведите на иконку
+                                <v-icon
+                                        style="font-size: 18px;"
+                                        color="primary"
+                                        dark
+                                >mdi-help-circle</v-icon>
+                                для отображения детальной информации.
+                            </p>
+                        </div>
                     </v-card-text>
                 </v-card>
-            </v-col>
+            </v-flex>
+
         </v-row>
     </v-container>
 </template>
@@ -246,9 +257,36 @@
     .block__phone-item {
         display: flex;
         align-items: center;
-        margin: 0 20px 0 15px;
+        /*margin: 0 20px 0 15px;*/
     }
 
+    .btn-delete {
+        width: 100%;
+    }
+
+    .btn-delete-title {
+        font-size: 16px;
+    }
+
+    .divider {
+        width: 100%;
+    }
+
+    @media (min-width: 600px) {
+        .btn-delete {
+            width: auto;
+        }
+
+        .btn-delete-title {
+            display: none;
+        }
+    }
+
+    @media (min-width: 960px) {
+        .divider {
+            display: none;
+        }
+    }
 
     .pointer {
         cursor: pointer !important;

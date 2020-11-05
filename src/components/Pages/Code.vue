@@ -26,15 +26,15 @@
             >
                 <v-layout>
                     <v-expansion-panels accordion>
-                        <v-expansion-panel>
-                            <v-expansion-panel-header style="background: #fbfbfb; outline: 0;">
+                        <v-expansion-panel dark>
+                            <v-expansion-panel-header dark color="us1" style="outline: 0;">
                                 <img
                                         class="icon-service"
-                                        src="img/code/gtm.png"
+                                        src="img/code/gtm.png?v=1.0"
                                         alt="google tag manager"
                                 >
                                 <template v-slot:actions>
-                                    <v-icon color="black">$expand</v-icon>
+                                    <v-icon dark>$expand</v-icon>
                                 </template>
                                 <div style="text-align: center;">
                                     <v-icon
@@ -70,7 +70,7 @@
                                     <v-sheet>
                                         <v-switch
                                                 v-model="findings.scripts.gtm.enabled"
-                                                :label="findings.scripts.gtm.enabled ? 'Включен' : 'Выключен'"
+                                                :label="findings.scripts.gtm.enabled ? 'Подключен' : 'Не подключен'"
                                         >
                                         </v-switch>
                                     </v-sheet>
@@ -90,14 +90,14 @@
                 <v-layout>
                     <v-expansion-panels accordion>
                         <v-expansion-panel>
-                            <v-expansion-panel-header style="background: #fbfbfb; outline: 0;">
+                            <v-expansion-panel-header color="us1" style="outline: 0;">
                                 <img
                                         class="icon-service"
-                                        :src="'img/code/' + list.name + '.png'"
+                                        :src="'img/code/' + list.name + '.png?v=1.0'"
                                         :alt=list.title
                                 >
                             <template v-slot:actions>
-                                <v-icon color="black">$expand</v-icon>
+                                <v-icon dark>$expand</v-icon>
                             </template>
                                 <div style="text-align: center;">
                                     <v-icon
@@ -124,7 +124,7 @@
                                     <v-sheet>
                                         <v-switch
                                                 v-model="list.enabled"
-                                                :label="list.enabled ? 'Включен' : 'Выключен'"
+                                                :label="list.enabled ? 'Подключен' : 'Не подключен'"
                                         >
                                         </v-switch>
                                     </v-sheet>
@@ -174,7 +174,7 @@
                             <v-sheet>
                                 <v-switch
                                         v-model="list.enabled"
-                                        :label="list.enabled ? 'Включен' : 'Выключен'"
+                                        :label="list.enabled ? 'Подключен' : 'Не подключен'"
                                 >
                                 </v-switch>
                             </v-sheet>

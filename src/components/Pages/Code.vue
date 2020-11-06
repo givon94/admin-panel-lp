@@ -2,7 +2,7 @@
     <v-container fluid>
 
         <!--Кнопка сохранить-->
-        <div class="my-2 btn-save">
+        <div class="my-2 btn-save code__btn-save">
             <v-btn
                     large
                     color="success"
@@ -215,7 +215,7 @@
 
 
 <style scoped>
-    .btn-save {
+    .code__btn-save {
         text-align: center;
         position: sticky;
         top: 0;
@@ -264,7 +264,7 @@
     }
 
     @media (min-width: 1263px) {
-        .btn-save {
+        .code__btn-save {
             top: 87px;
         }
     }

@@ -75,6 +75,50 @@
 		"topbar": false
 	}
   ],
+  "messengers": [
+	{
+		"name": "viber_number",
+		"icon": "viber",
+		"number": ""
+	},
+	{
+		"name": "viber_bot",
+		"icon": "viber",
+		"number": ""
+	},
+	{
+		"name": "telegram",
+		"icon": "telegram",
+		"number": ""
+	},
+	{
+		"name": "whatsapp",
+		"icon": "whatsapp",
+		"number": ""
+	}
+  ],
+  "social": [
+	{
+		"name": "vk",
+		"link": ""
+	},
+	{
+		"name": "insta",
+		"link": ""
+	},
+	{
+		"name": "fb",
+		"link": ""
+	},
+	{
+		"name": "ok",
+		"link": ""
+	},
+	{
+		"name": "youtube",
+		"link": ""
+	}
+  ],
   "scripts": {
   	"gtm": {
 			"name": "gtm",

@@ -193,7 +193,7 @@
 </script>
 
 
-<style scoped>
+<style>
   .pointer {
     cursor: pointer;
     user-select: none;

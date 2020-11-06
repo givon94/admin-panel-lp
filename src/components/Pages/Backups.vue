@@ -20,7 +20,7 @@
                                 <v-list-item-title>{{list.time}}</v-list-item-title>
                             </v-list-item-content>
                             <v-btn
-                                    class="upload-btn"
+                                    class="upload-btn backups__upload-btn"
                                     color="indigo"
                                     dark
                                     @click="restoreBackup(list)"
@@ -31,6 +31,7 @@
             </v-flex>
         </v-flex>
     </v-container>
+
 </template>
 
 
@@ -59,13 +60,13 @@
 </script>
 
 
-<style scoped>
-    .upload-btn {
+<style>
+    .backups__upload-btn {
         zoom: .9;
     }
 
     @media (min-width: 600px) {
-        .upload-btn {
+        .backups__upload-btn {
             zoom: normal;
         }
     }

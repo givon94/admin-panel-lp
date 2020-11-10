@@ -5,12 +5,6 @@ mixin css(css_path)
 mixin js(js_path)
     script(src= js_path)
 
-mixin css-onload(css_path)
-    link(href= css_path, media='none', onload='if(media!="all") media="all"', rel='stylesheet')
-
-mixin css-preload(css_path)
-    link(rel='preload', href= css_path, as='style', onload="this.rel='stylesheet'")
-
 mixin style-404
     style.
         section.error404{position:relative;min-width:360px}.h1-404{margin-top:-100px;padding-bottom:20px;text-align:center;font-family:Arial,sans-serif;font-size:2rem}.h2-404{top:110px;font-family:Arial,sans-serif;padding-bottom:10px;text-align:center;font-size:28px;color:#bc2929;position:relative}.error__404-images{display:flex;justify-content:center;align-items:center}.error-404__btn{width:240px;height:46px;padding-top:8px;display:block;margin:10px auto;font-size:20px;text-align:center}@media (max-width: 600px){.error404{min-width:200px!important}.error-image{max-width:300px}.error-images{max-width:200px}.h1-404{margin-top:0}.h2-404{top:20px;max-width:202px;margin-left:auto;margin-right:auto;padding:0}}
@@ -18,7 +12,7 @@ mixin style-404
 
 mixin style-main
     style.
-        header,main{display:block;overflow:hidden;}
+        header,main{display:block;overflow:hidden;}.preloader{position:fixed;left:0;top:0;right:0;bottom:0;background:#fff;z-index:1001}.preloader__row{position:relative;top:50%;left:50%;width:70px;height:70px;margin-top:-35px;margin-left:-35px;text-align:center;animation:preloader-rotate 2s infinite linear}.preloader__item{position:absolute;display:inline-block;top:0;background-color:#3f51b5;border-radius:100%;width:35px;height:35px;animation:preloader-bounce 2s infinite ease-in-out}.preloader__item:last-child{top:auto;bottom:0;animation-delay:-1s}@keyframes preloader-rotate{100%{transform:rotate(360deg)}}@keyframes preloader-bounce{0%,100%{transform:scale(0)}50%{transform:scale(1)}}.loaded_hiding .preloader{transition:.3s opacity;opacity:0}.loaded .preloader{display:none}
 
 
 //- Цвет закладки в мобильном браузере
@@ -59,3 +53,9 @@ mixin ifIE
         strong устаревший
         | браузер. Пожалуйста
         a(href='https://browsehappy.com/') обновите ваш браузер.
+
+mixin preloader
+    .preloader
+        .preloader__row
+            .preloader__item
+            .preloader__item

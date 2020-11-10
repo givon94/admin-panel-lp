@@ -3,7 +3,9 @@ $( document ).ready(function() {
     const prefixURL = Math.floor(Math.random() * 1000) + 1;
     const baseURL = '../admin/api/database.json?' + prefixURL;
 
-    let logo = document.querySelectorAll('.main-logo'),
+    let topBar = document.querySelector('.top-bar'),
+        logo = document.querySelectorAll('.main-logo'),
+        header = document.querySelector('.header'),
         pageTitleMain = document.querySelector('title'),
         pageTitle = document.querySelector('meta[name="title"]'),
         pageDescr = document.querySelector('meta[name="description"]'),
@@ -54,6 +56,7 @@ $( document ).ready(function() {
         contactsTopBar = data.contacts.filter((item) => item.topbar);
         scriptsLists = data.scripts.lists.filter((item) => item.enabled);
         scriptsOther = data.scripts.other.filter((item) => item.enabled);
+        window.email_customer = data.email_form;
 
         const metaData = meta.filter((item) => {
             return item.page === thisPage;
@@ -71,6 +74,8 @@ $( document ).ready(function() {
         sriptsAdd(scriptsLists);
         sriptsAdd(scriptsOther);
     });
+
+
 
     //-Мета теги
     const metaDataUpdate = (meta) => {
@@ -129,6 +134,7 @@ $( document ).ready(function() {
                 item.insertAdjacentHTML('beforeend', phoneItem.outerHTML);
             })
         }
+        if(el === contactPhonesTopBar) resizeTopBar();
     };
 
 
@@ -197,6 +203,22 @@ $( document ).ready(function() {
             $('head').prepend(scripts.code_head);
             $('body').append(scripts.code_body);
         }
+    }
+
+    //-Отступ header
+    const resizeTopBar = () => {
+        if (window.innerWidth >= 900) {
+            let topBarHeight = topBar.scrollHeight;
+
+            header.style.marginTop = topBarHeight + 'px';
+        }
+        if (window.innerWidth < 900) {
+            header.style.marginTop = '0px';
+        }
+    }
+
+    window.onresize = function() {
+        resizeTopBar();
     }
 
 });

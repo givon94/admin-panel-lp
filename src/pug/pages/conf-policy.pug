@@ -1,8 +1,5 @@
 -companyName = 'Тест';
 -companySite = 'test.by';
--companyNumber = '+375(33) 123-12-12';
-
-
 
 doctype html
 html(lang='ru-RU')
@@ -52,6 +49,34 @@ html(lang='ru-RU')
             h4.confpolicy-title 5. Как с нами связаться
             p Если у вас возникнут какие-то вопросы, связанные с сохранностью ваших персональных данных или связанные с работой сайта, обращайтесь к нам:
             ul
-                li Телефон: #{companyNumber}
+                li#confpolicy-phone
             p С уважением, «#{companyName}»
             p Настоящая редакция политики конфиденциальности опубликована 14.11.2018
+
+
+        script.
+            var prefixURL = Math.floor(Math.random() * 1000) + 1;
+            var baseURL = '../admin/api/database.json?' + prefixURL;
+            var confpolicyPhone = document.querySelector('#confpolicy-phone');
+
+            var getData = function getData(url, callback) {
+                var reject = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : console.error;
+                var request = new XMLHttpRequest();
+                request.open('GET', url);
+                request.addEventListener('readystatechange', function () {
+                    if (request.readyState !== 4) return;
+
+                    if (request.status === 200) {
+                        callback(request.response);
+                    } else {
+                        reject(request.status);
+                    }
+                });
+                request.send();
+            };
+
+            getData(baseURL, function (data) {
+                data = JSON.parse(data);
+                confpolicyPhone.innerHTML = 'Телефон: ' + data.contacts[0].num;
+            });
+

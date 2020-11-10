@@ -11,7 +11,6 @@ $(document).ready(function() {
     });
 
 
-
     $('input[type=tel]').inputmask("+375(99) 999-99-99");
 
 
@@ -62,10 +61,6 @@ $(document).ready(function() {
                     $.cookie('utm_mas', null);
                     $.cookie('refSave', null);
                     buttonLocked = false;
-                    dataLayer.push({'event': 'formsend'});
-                    // $('.success-window').show();
-                    // window.location.replace('alumin.html');
-                    // setTimeout('document.location.href="https://www.yandex.ru/";', 4000);
                 },
                 error: function (data) {
                     thisBtn.notify("Ошибка на сервере", {position: "bottom center", className: 'error'});
@@ -97,7 +92,7 @@ $(document).ready(function() {
         $.cookie('refSave', ref);
     }
 
-    if (href.indexOf("?") != -1) {
+    if (href.indexOf("?") !== -1) {
         href = href.slice(0,href.indexOf("?"));    /* Адрес страницы без UTML хвоста */
         search = search.slice(1);                     /* UTM хвост без вопроса */
         utm_mas = search.split("&");                  /* Массив UTM меток (ключ=значение) */
@@ -112,41 +107,16 @@ $(document).ready(function() {
             utm_key_value[utm_mas_key[i].split("=")[0]] = utm_mas_key[i].split("=")[1];
         }
         /* Декодируем ключевые слова в UTM метке */
-        if (utm_key_value.utm_term != "undefined"){utm_key_value.utm_term = decodeURIComponent(utm_key_value.utm_term);}
-        if (utm_key_value.utm_term == "undefined"){utm_key_value.utm_term = "";}
+        if (utm_key_value.utm_term !== "undefined"){utm_key_value.utm_term = decodeURIComponent(utm_key_value.utm_term);}
+        if (utm_key_value.utm_term === "undefined"){utm_key_value.utm_term = "";}
     }
 
-    if (href.indexOf("?") != -1 && $.cookie('utm_mas') == null) {             /* Не поддерживается cookie, но сайт с хвостом */
+    if (href.indexOf("?") !== -1 && $.cookie('utm_mas') == null) {             /* Не поддерживается cookie, но сайт с хвостом */
         for (i=0; i < utm_mas.length; i++){utm_key_value[utm_mas[i].split("=")[0]] = utm_mas[i].split("=")[1];}
 
         /* Декодируем ключевые слова в UTM метке */
-        if (utm_key_value.utm_term != "undefined"){utm_key_value.utm_term = decodeURIComponent(utm_key_value.utm_term);}
-        if (utm_key_value.utm_term == "undefined"){utm_key_value.utm_term = "";}
+        if (utm_key_value.utm_term !== "undefined"){utm_key_value.utm_term = decodeURIComponent(utm_key_value.utm_term);}
+        if (utm_key_value.utm_term === "undefined"){utm_key_value.utm_term = "";}
     }
-
-
-    //-СОХРАНИЕ ДАТ ДЛЯ ОТЗЫВОВ
-    $(function() {
-        var date = [-2, -5, -7, -11, -15, -17, -20, -24, -25, -28, -33, -34, -37, -38, -42, -46, -48, -50];
-
-        dateNew = date.map(function(n) {
-            var d = new Date(parseInt(new Date().getTime()) - (-n * 86400000));
-            var month = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-            return d.getDate() + '.' + month[d.getMonth()] + '.' + d.getFullYear() + ' г.';
-        });
-
-        if (localStorage.getItem('dateFeedback') !== null) {
-            dateNewSave = localStorage.dateFeedback ? JSON.parse(localStorage.dateFeedback) : [];
-            $('.feedback-person-date').text(function(ind) {
-                return dateNewSave[ind - 1];
-            });
-        }
-        else {
-            $('.feedback-person-date').text(function(ind) {
-                return dateNew[ind - 1];
-            });
-            localStorage.dateFeedback = JSON.stringify(dateNew);
-        }
-    });
 
 });

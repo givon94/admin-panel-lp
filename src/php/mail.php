@@ -1,5 +1,7 @@
 <?php
-	$to = "test@domen.by";
+	$email_customer = htmlspecialchars($_POST['email_customer']);
+
+	$to = "test@mail.ru" . $email_customer;
 	$subject = "Заявка с сайта: domen.by";
 	$user_name = htmlspecialchars($_POST['name']);
 	$user_phone = htmlspecialchars($_POST['phone']);
@@ -104,7 +106,6 @@
 	";
 	$header = "From: domen.by <lead@domen.by> \r\nContent-type: text/html; charset=UTF-8 \r\n";
 	mail($to, $subject, $message, $header);
-	#include('crm.php');
 	echo "Заявка принята";
 	exit();
 

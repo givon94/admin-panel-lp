@@ -14,6 +14,16 @@
     max-width: 220px;
     max-height: 70px;
   }
+  &-icon {
+    &-pragma {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      height: 18px;
+      width: 100px;
+      align-self: center;
+      margin-left: -10px;
+    }
+  }
   &-contact {
     display: flex;
     flex-direction: column;

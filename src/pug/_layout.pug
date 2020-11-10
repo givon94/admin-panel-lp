@@ -20,14 +20,14 @@ html#app(lang='ru-RU')
         +android-color
 
         +style-main
-        +css('css/header.css?v=1.0.0')
-        +css-onload('css/main.css?v=1.0.0')
+        +css('css/main.css?v=1.0.0')
 
 
 
     body
         +ifIE
 
+        +preloader
         block content
             include common/_top-bar
         block header
@@ -42,5 +42,13 @@ html#app(lang='ru-RU')
             window.jQuery ||
             document.write('<script src="js/jquery-3.3.1.min.js"><\/script>')
 
-        script(async='', src='js/admin.js?v=1.0.0')
         script(async='', src='js/build.js?v=1.0.0')
+
+        script.
+            window.onload = function () {
+                document.body.classList.add('loaded_hiding');
+                window.setTimeout(function () {
+                    document.body.classList.add('loaded');
+                    document.body.classList.remove('loaded_hiding');
+                }, 500);
+            }

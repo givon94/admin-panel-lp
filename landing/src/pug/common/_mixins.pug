@@ -1,0 +1,61 @@
+include _variables
+
+mixin css(css_path)
+    link(rel='stylesheet', type='text/css', href= css_path)
+mixin js(js_path)
+    script(src= js_path)
+
+mixin style-404
+    style.
+        section.error404{position:relative;min-width:360px}.h1-404{margin-top:-100px;padding-bottom:20px;text-align:center;font-family:Arial,sans-serif;font-size:2rem}.h2-404{top:110px;font-family:Arial,sans-serif;padding-bottom:10px;text-align:center;font-size:28px;color:#bc2929;position:relative}.error__404-images{display:flex;justify-content:center;align-items:center}.error-404__btn{width:240px;height:46px;padding-top:8px;display:block;margin:10px auto;font-size:20px;text-align:center}@media (max-width: 600px){.error404{min-width:200px!important}.error-image{max-width:300px}.error-images{max-width:200px}.h1-404{margin-top:0}.h2-404{top:20px;max-width:202px;margin-left:auto;margin-right:auto;padding:0}}
+
+
+mixin style-main
+    style.
+        header,main{display:block;overflow:hidden;}.preloader{position:fixed;left:0;top:0;right:0;bottom:0;background:#fff;z-index:1001}.preloader__row{position:relative;top:50%;left:50%;width:70px;height:70px;margin-top:-35px;margin-left:-35px;text-align:center;animation:preloader-rotate 2s infinite linear}.preloader__item{position:absolute;display:inline-block;top:0;background-color:#3f51b5;border-radius:100%;width:35px;height:35px;animation:preloader-bounce 2s infinite ease-in-out}.preloader__item:last-child{top:auto;bottom:0;animation-delay:-1s}@keyframes preloader-rotate{100%{transform:rotate(360deg)}}@keyframes preloader-bounce{0%,100%{transform:scale(0)}50%{transform:scale(1)}}.loaded_hiding .preloader{transition:.3s opacity;opacity:0}.loaded .preloader{display:none}
+
+
+//- Цвет закладки в мобильном браузере
+mixin android-color
+    meta(name='theme-color', content= andriodTabColor)
+
+
+mixin meta-header
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+mixin favicon(path)
+    - default_path = path || "img/favicons/favicon-"
+    link(rel='icon', href= default_path + '192.png', sizes='192x192', type='image/png')
+
+
+mixin Manifest(manifestPath)
+    - manifest = manifestPath || '/manifest.json'
+    link(rel='manifest', href=manifest)
+
+
+mixin open-graph
+    meta(property="og:type" content="website")
+    meta(property="og:locale" content="ru_RU")
+    meta(property='og:title', content='')
+    meta(property='og:description', content='')
+    meta(property='og:url', content='')
+    meta(property='og:image', content='')
+    meta(property="og:image:width" content="968")
+    meta(property="og:image:height" content="504")
+    meta(property="og:image:alt" content='')
+
+
+mixin ifIE
+    //if lte IE 9
+      p.browserupgrade
+        | Вы используете
+        strong устаревший
+        | браузер. Пожалуйста
+        a(href='https://browsehappy.com/') обновите ваш браузер.
+
+mixin preloader
+    .preloader
+        .preloader__row
+            .preloader__item
+            .preloader__item

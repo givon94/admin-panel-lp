@@ -1,6 +1,8 @@
 # Simple admin panel landing page
 
-## Project setup
+## Admin
+
+### Project setup
 ```
 npm install
 ```
@@ -22,3 +24,22 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+---
+
+## LP
+
+### Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+gulp
+```
+
+### Compiles and minifies for production
+```
+gulp rel
+```
